@@ -1,15 +1,22 @@
-import Avatar from '../Avatar'
+import Avatar from "../Avatar"
+import SignUp from "./SignUp"
 
 export default function index() {
+  const loggedIn = true
   const users = [
     {
       id: 1,
-      name: 'John Doe',
-      username: 'johndoe',
-    },
+      name: "John Doe",
+      username: "johndoe"
+    }
   ]
+
+  if (!loggedIn) {
+    return <SignUp />
+  }
+
   return (
-    <div className="px-6 py-4 hidden lg:block w-[300px]">
+    <div className="px-6 py-4 hidden lg:block w-[320px]">
       <div className="bg-neutral-800 rounded-xl p-4">
         <h2 className="text-white text-xl font-semibold">Who to follow</h2>
         <div className="flex flex-col gap-6 mt-4">

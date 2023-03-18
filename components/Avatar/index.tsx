@@ -1,6 +1,7 @@
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { useCallback } from 'react'
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useCallback } from "react"
+import PlaceholderImg from "../../images/placeholder.webp"
 
 interface AvatarProps {
   userId: string
@@ -23,9 +24,9 @@ export default function Avatar({ userId, isLarge, hasBorder }: AvatarProps) {
   return (
     <div
       className={`
-        ${hasBorder ? 'border-4 border-black' : ''}
-        ${isLarge ? 'h-32' : 'h-12'}
-        ${isLarge ? 'w-32' : 'w-12'}
+        ${hasBorder ? "border-4 border-black" : ""}
+        ${isLarge ? "h-30" : "h-10"}
+        ${isLarge ? "w-30" : "w-10"}
         rounded-full 
         hover:opacity-90 
         transition 
@@ -36,12 +37,12 @@ export default function Avatar({ userId, isLarge, hasBorder }: AvatarProps) {
       <Image
         fill
         style={{
-          objectFit: 'cover',
-          borderRadius: '100%',
+          objectFit: "cover",
+          borderRadius: "100%"
         }}
         alt="Avatar"
         onClick={onClick}
-        src={'/images/placeholder.png'}
+        src={PlaceholderImg}
       />
     </div>
   )

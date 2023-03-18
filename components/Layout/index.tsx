@@ -1,5 +1,5 @@
-import Sidebar from '../Sidebar'
-import TrendsBar from '../TrendsBar'
+import Sidebar from "../Sidebar"
+import TrendsBar from "../TrendsBar"
 
 interface LayoutProps {
   children: React.ReactNode
