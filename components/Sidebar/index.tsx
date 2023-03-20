@@ -1,12 +1,12 @@
 import Link from "next/link"
-import { BsBellFill, BsHouseFill, BsTwitter } from "react-icons/bs"
 import { BiLogOut } from "react-icons/bi"
+import { BsBellFill, BsHouseFill, BsTwitter } from "react-icons/bs"
 import { FaUser } from "react-icons/fa"
-import SidebarItem from "./SidebarItem"
 import Button from "../Button"
+import SidebarItem from "./SidebarItem"
 
 export default function index() {
-  const loggedIn = true
+  const loggedIn = false
   const menu = [
     {
       icon: BsHouseFill,
@@ -29,9 +29,7 @@ export default function index() {
       }
     )
 
-  const signOut = () => {
-    console.log("test")
-  }
+  const signOut = () => {}
 
   return (
     <div className="flex flex-col w-[230px] h-screen pr-[1.5rem]">

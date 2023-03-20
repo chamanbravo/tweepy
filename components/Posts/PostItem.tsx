@@ -1,7 +1,5 @@
 import { useRouter } from "next/router"
-import { useCallback, useMemo } from "react"
 import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai"
-
 import Avatar from "../Avatar"
 interface PostItemProps {
   data: Record<string, any>
@@ -9,7 +7,6 @@ interface PostItemProps {
 }
 
 export default function PostItem({ data = {}, userId }: PostItemProps) {
-  console.log(userId)
   const {
     id,
     username,

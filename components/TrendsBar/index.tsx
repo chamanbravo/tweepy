@@ -2,7 +2,7 @@ import Avatar from "../Avatar"
 import SignUp from "./SignUp"
 
 export default function index() {
-  const loggedIn = true
+  const loggedIn = false
   const users = [
     {
       id: 1,
