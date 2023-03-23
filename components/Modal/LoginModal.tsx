@@ -1,7 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/store"
 import { toggleLoginModal } from "@/store/features/loginModal"
 import { toggleRegisterModal } from "@/store/features/registerModal"
+import { signIn } from "next-auth/react"
 import { useCallback, useState } from "react"
+import toast from "react-hot-toast"
 import Modal from "."
 import Input from "../Input"
 
@@ -12,7 +14,28 @@ export default function LoginModal() {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = () => {}
+  const onSubmit = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false
+      })
+      if (res.ok) {
+        toast.success("Logged in")
+        dispatch(toggleLoginModal())
+      } else {
+        toast.error("Invalid credentials")
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Something went wrong")
+    } finally {
+      setIsLoading(false)
+    }
+  }, [email, password, dispatch])
+
   const onToggle = useCallback(() => {
     if (isLoading) return
 

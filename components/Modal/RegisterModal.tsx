@@ -1,7 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/store"
 import { toggleLoginModal } from "@/store/features/loginModal"
 import { toggleRegisterModal } from "@/store/features/registerModal"
-import { SetStateAction, useCallback, useState } from "react"
+import axios from "axios"
+import { signIn } from "next-auth/react"
+import { useCallback, useState } from "react"
+import toast from "react-hot-toast"
 import Input from "../Input"
 import Modal from "../Modal"
 
@@ -15,7 +18,33 @@ export default function RegisterModal() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = () => {}
+  const onSubmit = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const { data } = await axios.post("/api/register", {
+        email,
+        password,
+        username,
+        name
+      })
+      if (data.success) {
+        setIsLoading(false)
+        toast.success("Account created successfully!")
+        dispatch(toggleRegisterModal())
+        signIn("credentials", {
+          email,
+          password
+        })
+      } else {
+        toast.error(data.error)
+      }
+    } catch (e: any) {
+      toast.error(e.response.data.error)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [email, password, username, name, dispatch])
+
   const onToggle = useCallback(() => {
     if (isLoading) return
 
@@ -29,7 +58,7 @@ export default function RegisterModal() {
         disabled={isLoading}
         placeholder="Email"
         value={email}
-        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+        onChange={(e: { target: { value: string } }) =>
           setEmail(e.target.value)
         }
       />
@@ -37,15 +66,13 @@ export default function RegisterModal() {
         disabled={isLoading}
         placeholder="Name"
         value={name}
-        onChange={(e: { target: { value: SetStateAction<string> } }) =>
-          setName(e.target.value)
-        }
+        onChange={(e: { target: { value: string } }) => setName(e.target.value)}
       />
       <Input
         disabled={isLoading}
         placeholder="Username"
         value={username}
-        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+        onChange={(e: { target: { value: string } }) =>
           setUsername(e.target.value)
         }
       />
@@ -54,7 +81,7 @@ export default function RegisterModal() {
         placeholder="Password"
         type="password"
         value={password}
-        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+        onChange={(e: { target: { value: string } }) =>
           setPassword(e.target.value)
         }
       />
