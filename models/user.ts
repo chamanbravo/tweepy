@@ -1,4 +1,5 @@
-import mongoose, { model, Model, Schema } from "mongoose"
+import { IUser } from "@/types"
+import mongoose, { Model, model, Schema } from "mongoose"
 
 const UserSchema: Schema = new Schema({
   username: {
@@ -18,7 +19,7 @@ const UserSchema: Schema = new Schema({
     unique: true,
     required: [true, "Email is required"],
     match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       "Invalid email address"
     ]
   },
@@ -35,5 +36,6 @@ const UserSchema: Schema = new Schema({
   }
 })
 
-export const User = (mongoose.models.User ||
-  model("User", UserSchema)) as Model<IUser>
+const User = (mongoose.models.User || model("User", UserSchema)) as Model<IUser>
+
+export default User

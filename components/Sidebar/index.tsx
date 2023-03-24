@@ -1,4 +1,6 @@
+import { signOut, useSession } from "next-auth/react"
 import Link from "next/link"
+import { useMemo } from "react"
 import { BiLogOut } from "react-icons/bi"
 import { BsBellFill, BsHouseFill, BsTwitter } from "react-icons/bs"
 import { FaUser } from "react-icons/fa"
@@ -6,17 +8,27 @@ import Button from "../Button"
 import SidebarItem from "./SidebarItem"
 
 export default function index() {
-  const loggedIn = false
-  const menu = [
-    {
-      icon: BsHouseFill,
-      label: "Home",
-      href: "/"
-    }
-  ]
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data: session, status } = useSession()
+  const loggedIn = status === "authenticated"
 
-  if (loggedIn)
-    menu.push(
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const menu = useMemo(() => {
+    if (!session)
+      return [
+        {
+          icon: BsHouseFill,
+          label: "Home",
+          href: "/"
+        }
+      ]
+
+    return [
+      {
+        icon: BsHouseFill,
+        label: "Home",
+        href: "/"
+      },
       {
         icon: BsBellFill,
         label: "Notifications",
@@ -25,11 +37,10 @@ export default function index() {
       {
         icon: FaUser,
         label: "Profile",
-        href: `/users/`
+        href: `/${session.user.name}/`
       }
-    )
-
-  const signOut = () => {}
+    ]
+  }, [session])
 
   return (
     <div className="flex flex-col w-[230px] h-screen pr-[1.5rem]">

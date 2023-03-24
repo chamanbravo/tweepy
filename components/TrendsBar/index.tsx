@@ -1,8 +1,11 @@
+import { useSession } from "next-auth/react"
 import Avatar from "../Avatar"
 import SignUp from "./SignUp"
 
 export default function index() {
-  const loggedIn = false
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data: session, status } = useSession()
+  const loggedIn = status === "authenticated"
   const users = [
     {
       id: 1,
