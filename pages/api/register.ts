@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/lib/mongodb"
+import { connectToDatabase } from "@/libs/mongodb"
 import { User } from "@/models"
 import bcrypt from "bcrypt"
 import mongoose from "mongoose"

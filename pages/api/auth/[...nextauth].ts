@@ -1,4 +1,4 @@
-import { connectToDatabase } from "@/lib/mongodb"
+import { connectToDatabase } from "@/libs/mongodb"
 import User from "@/models/User"
 import { compare } from "bcrypt"
 import NextAuth, { NextAuthOptions } from "next-auth"

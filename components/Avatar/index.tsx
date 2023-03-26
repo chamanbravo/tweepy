@@ -4,21 +4,21 @@ import { useCallback } from "react"
 import PlaceholderImg from "../../images/placeholder.webp"
 
 interface AvatarProps {
-  userId: string
+  username: string
   isLarge?: boolean
   hasBorder?: boolean
 }
 
-export default function Avatar({ userId, isLarge, hasBorder }: AvatarProps) {
+export default function Avatar({ username, isLarge, hasBorder }: AvatarProps) {
   const router = useRouter()
 
   const onClick = useCallback(
     (event: any) => {
       event.stopPropagation()
-      const url = `/users/${userId}`
+      const url = `/${username}`
       router.push(url)
     },
-    [router, userId]
+    [router, username]
   )
 
   return (
@@ -27,9 +27,9 @@ export default function Avatar({ userId, isLarge, hasBorder }: AvatarProps) {
         ${hasBorder ? "border-4 border-black" : ""}
         ${isLarge ? "h-30" : "h-10"}
         ${isLarge ? "w-30" : "w-10"}
-        rounded-full 
-        hover:opacity-90 
-        transition 
+        rounded-full
+        hover:opacity-90
+        transition
         cursor-pointer
         relative
       `}

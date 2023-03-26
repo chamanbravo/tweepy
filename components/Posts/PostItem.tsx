@@ -1,4 +1,3 @@
-import { useRouter } from "next/router"
 import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai"
 import Avatar from "../Avatar"
 interface PostItemProps {
@@ -6,9 +5,8 @@ interface PostItemProps {
   userId: string
 }
 
-export default function PostItem({ data = {}, userId }: PostItemProps) {
+export default function PostItem({ data = {} }: PostItemProps) {
   const {
-    id,
     username,
     name,
     createdAt,
@@ -18,30 +16,29 @@ export default function PostItem({ data = {}, userId }: PostItemProps) {
     hasLiked
   } = data
   const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart
-  const router = useRouter()
 
   return (
     <div
       onClick={() => {}}
       className="
-        border-b-[1px] 
-        border-neutral-800 
-        p-5 
-        cursor-pointer 
-        hover:bg-neutral-900 
+        border-b-[1px]
+        border-neutral-800
+        p-5
+        cursor-pointer
+        hover:bg-neutral-900
         transition
       "
     >
       <div className="flex flex-row items-start gap-3">
-        <Avatar userId={userId} />
+        <Avatar username={username as string} />
         <div>
           <div className="flex flex-row items-center gap-2">
             <p
               onClick={() => {}}
               className="
-                text-white 
-                font-semibold 
-                cursor-pointer 
+                text-white
+                font-semibold
+                cursor-pointer
                 hover:underline
             "
             >
@@ -65,13 +62,13 @@ export default function PostItem({ data = {}, userId }: PostItemProps) {
           <div className="flex flex-row items-center mt-3 gap-10">
             <div
               className="
-                flex 
-                flex-row 
-                items-center 
-                text-neutral-500 
-                gap-2 
-                cursor-pointer 
-                transition 
+                flex
+                flex-row
+                items-center
+                text-neutral-500
+                gap-2
+                cursor-pointer
+                transition
                 hover:text-sky-500
             "
             >
@@ -81,13 +78,13 @@ export default function PostItem({ data = {}, userId }: PostItemProps) {
             <div
               onClick={() => {}}
               className="
-                flex 
-                flex-row 
-                items-center 
-                text-neutral-500 
-                gap-2 
-                cursor-pointer 
-                transition 
+                flex
+                flex-row
+                items-center
+                text-neutral-500
+                gap-2
+                cursor-pointer
+                transition
                 hover:text-red-500
             "
             >

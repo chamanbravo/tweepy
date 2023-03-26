@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { TypedUseSelectorHook } from "react-redux/es/types"
 import loginModal from "./features/loginModal"
 import registerModal from "./features/registerModal"
+import user from "./features/user"
 
 const store = configureStore({
   reducer: {
+    user,
     registerModal,
     loginModal
   }

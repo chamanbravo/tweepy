@@ -29,7 +29,6 @@ export default function LoginModal() {
         toast.error("Invalid credentials")
       }
     } catch (error) {
-      console.log(error)
       toast.error("Something went wrong")
     } finally {
       setIsLoading(false)
