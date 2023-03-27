@@ -2,7 +2,7 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from "react-icons/ai"
 import Avatar from "../Avatar"
 interface PostItemProps {
   data: Record<string, any>
-  userId: string
+  username: string
 }
 
 export default function PostItem({ data = {} }: PostItemProps) {

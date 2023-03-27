@@ -1,7 +1,29 @@
 import Header from "@/components/Header"
+import NotificationsFeed from "@/components/NotificationsFeed"
+import { NextPageContext } from "next"
+import { getSession } from "next-auth/react"
 import Head from "next/head"
 
-export default function Notifications() {
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {
+      session
+    }
+  }
+}
+
+const Notifications = () => {
   return (
     <>
       <Head>
@@ -11,7 +33,10 @@ export default function Notifications() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header label="Notifications" />
+      <Header showBackArrow label="Notifications" />
+      <NotificationsFeed />
     </>
   )
 }
+
+export default Notifications

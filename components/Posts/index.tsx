@@ -1,10 +1,10 @@
 import PostItem from "./PostItem"
 
 interface PostFeedProps {
-  userId: string
+  username: string
 }
 
-export default function PostFeed({ userId }: PostFeedProps) {
+export default function PostFeed({ username }: PostFeedProps) {
   const posts = [
     {
       id: 1,
@@ -29,7 +29,7 @@ export default function PostFeed({ userId }: PostFeedProps) {
   return (
     <>
       {posts.map((post: Record<string, any>) => (
-        <PostItem userId={userId} key={post.id} data={post} />
+        <PostItem username={username} key={post.id} data={post} />
       ))}
     </>
   )

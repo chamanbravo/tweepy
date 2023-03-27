@@ -13,7 +13,7 @@ type SidebarProps = {
   loggedIn: boolean
 }
 
-export default function index({loggedIn}: SidebarProps) {
+export default function index({ loggedIn }: SidebarProps) {
   const { username } = useAppSelector((state) => state.user)
 
   const menu = useMemo(() => {

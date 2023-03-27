@@ -1,11 +1,15 @@
 import { useAppDispatch } from "@/store"
+import { toggleLoginModal } from "@/store/features/loginModal"
 import { toggleRegisterModal } from "@/store/features/registerModal"
 import Button from "../Button"
 
 export default function SignUp() {
   const dispatch = useAppDispatch()
-  const handleClick = () => {
+  const registerModal = () => {
     dispatch(toggleRegisterModal())
+  }
+  const signinModal = () => {
+    dispatch(toggleLoginModal())
   }
 
   return (
@@ -16,10 +20,11 @@ export default function SignUp() {
       </p>
       <Button
         label="Create Account"
-        onClick={handleClick}
+        onClick={registerModal}
         fullWidth
         secondary
       />
+      <Button label="Sign in" onClick={signinModal} fullWidth />
     </div>
   )
 }
