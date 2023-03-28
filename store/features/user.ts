@@ -11,13 +11,17 @@ type UserState = {
   username: string
   email: string
   image: string
+  coverImage: string
+  bio: string
 }
 
 const initialState: UserState = {
   name: "",
   username: "",
   email: "",
-  image: ""
+  image: "",
+  coverImage: "",
+  bio: ""
 }
 
 export const userSlice = createSlice({
@@ -29,6 +33,8 @@ export const userSlice = createSlice({
       state.username = action.payload.username
       state.email = action.payload.email
       state.image = action.payload.image
+      state.coverImage = action.payload.coverImage
+      state.bio = action.payload.bio
     }
   },
   extraReducers: (builder) => {
@@ -37,6 +43,8 @@ export const userSlice = createSlice({
       state.username = action.payload.username
       state.email = action.payload.email
       state.image = action.payload.image
+      state.coverImage = action.payload.coverImage
+      state.bio = action.payload.bio
     })
   }
 })

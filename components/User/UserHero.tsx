@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/store"
 import Image from "next/image"
 import Avatar from "../Avatar"
 
@@ -6,7 +7,7 @@ interface UserHeroProps {
 }
 
 const UserHero: React.FC<UserHeroProps> = ({ username }) => {
-  const fetchedUser = {}
+  const fetchedUser = useAppSelector((state) => state.userProfile)
 
   return (
     <div>
@@ -20,7 +21,7 @@ const UserHero: React.FC<UserHeroProps> = ({ username }) => {
           />
         )}
         <div className="absolute -bottom-16 left-4">
-          <Avatar username={username} isLarge hasBorder />
+          <Avatar username={username} isLarge hasBorder image={fetchedUser?.image} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/libs/mongodb"
-import { User } from "@/models"
+import User from "@/models/User"
 import bcrypt from "bcrypt"
 import mongoose from "mongoose"
 import { NextApiRequest, NextApiResponse } from "next"

@@ -44,8 +44,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
           ></textarea>
           <hr
             className="
-                opacity-0
-                peer-focus:opacity-100
+                opacity-100
                 h-[1px]
                 w-full
                 border-neutral-800

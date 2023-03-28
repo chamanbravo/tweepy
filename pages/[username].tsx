@@ -2,13 +2,22 @@ import Header from "@/components/Header"
 import PostFeed from "@/components/Posts"
 import UserBio from "@/components/User/UserBio"
 import UserHero from "@/components/User/UserHero"
+import { useAppDispatch, useAppSelector } from "@/store"
+import { fetchUserProfile } from "@/store/features/userProfile"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { useEffect } from "react"
 
 export default function User() {
+  const dispatch = useAppDispatch()
   const router = useRouter()
   const { username } = router.query
-  const fetchedUser = []
+
+  useEffect(()=>{
+    dispatch(fetchUserProfile(username as string))
+  },[dispatch, username])
+
+  const fetchedUser = useAppSelector((state) => state.userProfile)
 
   return (
     <>
@@ -21,7 +30,7 @@ export default function User() {
 
       <Header showBackArrow label={username as string} />
 
-      {fetchedUser ? (
+      {!fetchedUser.username ? (
         <div className="text-neutral-600 text-center p-6 text-xl">
           No user found
         </div>

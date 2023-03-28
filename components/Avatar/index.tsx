@@ -7,9 +7,10 @@ interface AvatarProps {
   username: string
   isLarge?: boolean
   hasBorder?: boolean
+  image?: string
 }
 
-export default function Avatar({ username, isLarge, hasBorder }: AvatarProps) {
+export default function Avatar({ username, isLarge, hasBorder, image }: AvatarProps) {
   const router = useRouter()
 
   const onClick = useCallback(
@@ -35,14 +36,16 @@ export default function Avatar({ username, isLarge, hasBorder }: AvatarProps) {
       `}
     >
       <Image
-        fill
+        priority
         style={{
           objectFit: "cover",
           borderRadius: "100%"
         }}
+        height={isLarge ? 120 : 40}
+        width={isLarge ? 120 : 40}
         alt="Avatar"
         onClick={onClick}
-        src={PlaceholderImg}
+        src={image || PlaceholderImg}
       />
     </div>
   )
