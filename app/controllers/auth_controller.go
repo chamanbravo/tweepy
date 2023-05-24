@@ -19,6 +19,18 @@ type UserSignUp struct {
 	Password string `json:"password" validate:"required,min=6,max=32"`
 }
 
+// SignUp method to create a new user.
+// @Description Create a new user.
+// @Summary create a new user
+// @Tags User
+// @Accept json
+// @Produce json
+// @Param name body string true "Name"
+// @Param username body string true "Username"
+// @Param email body string true "Email"
+// @Param password body string true "Password"
+// @Success 200 {object} models.User
+// @Router /api/signup [post]
 func SignUp(c *fiber.Ctx) error {
 	user := new(UserSignUp)
 	if err := c.BodyParser(user); err != nil {

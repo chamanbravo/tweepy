@@ -7,6 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
+
+	_ "github.com/chamanbravo/tweepy/docs"
 )
 
 func main() {
@@ -18,9 +20,9 @@ func main() {
 	app := fiber.New()
 
 	app.Use(logger.New())
-	app.Static("/", "./web/dist")
 
 	routes.PublicRoute(app)
+	routes.SwaggerRoute(app)
 
 	app.Listen(":4000")
 }
