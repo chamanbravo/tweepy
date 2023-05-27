@@ -1,1 +1,1 @@
-fullstack twitter clone with GO and React.js
+Backend with GO
